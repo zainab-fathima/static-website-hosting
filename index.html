@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+        input, button { padding: 10px; margin: 10px; border: none; border-radius: 5px; }
+        button { background: #007BFF; color: white; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        ul { list-style: none; padding: 0; }
+        li { background: #e0e0e0; padding: 10px; margin: 5px; border-radius: 5px; display: flex; justify-content: space-between; }
+        .completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+
+    <h2>Task Manager</h2>
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button id="addBtn">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const taskInput = document.getElementById("taskInput");
+            const taskList = document.getElementById("taskList");
+            const addBtn = document.getElementById("addBtn");
+
+            addBtn.addEventListener("click", () => {
+                if (taskInput.value.trim() === "") return;
+
+                const li = document.createElement("li");
+                li.innerHTML = ${taskInput.value} <button onclick="removeTask(this)">❌</button>;
+                li.addEventListener("click", () => li.classList.toggle("completed"));
+                taskList.appendChild(li);
+                taskInput.value = "";
+            });
+        });
+
+        function removeTask(button) {
+            button.parentElement.remove();
+        }
+    </script>
+
+</body>
+</html>
